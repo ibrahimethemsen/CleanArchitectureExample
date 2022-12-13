@@ -1,4 +1,4 @@
-package com.ibrahim.ethem.sen.cleanarchitectureexample.data.dto
+package com.ibrahim.ethem.sen.cleanarchitectureexample.data.dto.quote
 
 
 import com.google.gson.annotations.SerializedName

@@ -1,4 +1,4 @@
-package com.ibrahim.ethem.sen.cleanarchitectureexample.presentation
+package com.ibrahim.ethem.sen.cleanarchitectureexample.presentation.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -1,4 +1,4 @@
-package com.ibrahim.ethem.sen.cleanarchitectureexample.presentation
+package com.ibrahim.ethem.sen.cleanarchitectureexample.presentation.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.ibrahim.ethem.sen.cleanarchitectureexample.databinding.FragmentHomeBinding
+import com.ibrahim.ethem.sen.cleanarchitectureexample.utility.searchFilter
 import com.ibrahim.ethem.sen.cleanarchitectureexample.utility.setVisibility
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,6 +31,10 @@ class HomeFragment : Fragment() {
         viewModel.getQuoteList()
         binding.homeRecyclerView.adapter = rvAdapter
         observeQuote()
+        viewModel.getQuote()
+        binding.searchInputEt.searchFilter {
+            viewModel.searchQuote(it)
+        }
     }
     private fun observeQuote(){
         viewModel.quoteList.observe(viewLifecycleOwner){

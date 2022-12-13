@@ -1,9 +1,9 @@
-package com.ibrahim.ethem.sen.cleanarchitectureexample.data.dto
+package com.ibrahim.ethem.sen.cleanarchitectureexample.data.dto.authors
 
 
 import com.google.gson.annotations.SerializedName
 
-data class QuoteResponse(
+data class AuthorsResponse(
     @SerializedName("count")
     val count: Int?,
     @SerializedName("lastItemIndex")
@@ -11,7 +11,7 @@ data class QuoteResponse(
     @SerializedName("page")
     val page: Int?,
     @SerializedName("results")
-    val results: List<QuoteResult>,
+    val results: List<AuthorsResult?>?,
     @SerializedName("totalCount")
     val totalCount: Int?,
     @SerializedName("totalPages")
