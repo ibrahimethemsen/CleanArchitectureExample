@@ -12,7 +12,6 @@ import dagger.hilt.android.scopes.ViewModelScoped
 @Module
 @InstallIn(ViewModelComponent::class)
 abstract class UseCaseModule {
-
     @Binds
     @ViewModelScoped
     abstract fun bindUseCase(getQuoteListUseCaseImpl: GetQuoteListUseCaseImpl) : GetQuoteListUseCase

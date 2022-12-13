@@ -11,16 +11,14 @@ import javax.inject.Inject
 
 class QuoteRepositoryImpl @Inject constructor(
     private val quoteDataSource: QuoteDataSource,
-    @IoDispatcher private val defaultDispatcher : CoroutineDispatcher = Dispatchers.IO
-    ) : QuoteRepository {
+    @IoDispatcher private val defaultDispatcher: CoroutineDispatcher = Dispatchers.IO
+) : QuoteRepository {
     override suspend fun getQuoteList(page: String): NetworkResponse<List<QuoteResult>> =
-
-        withContext(defaultDispatcher){
+        withContext(defaultDispatcher) {
             try {
                 quoteDataSource.getQuoteList(page)
-            }catch (e : Exception){
+            } catch (e: Exception) {
                 NetworkResponse.Error(e)
             }
         }
-
 }
