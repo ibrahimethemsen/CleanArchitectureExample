@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ibrahim.ethem.sen.cleanarchitectureexample.R
 import com.ibrahim.ethem.sen.cleanarchitectureexample.data.NetworkResponse
-import com.ibrahim.ethem.sen.cleanarchitectureexample.data.api.QuoteApi
 import com.ibrahim.ethem.sen.cleanarchitectureexample.domain.model.QuoteEntity
 import com.ibrahim.ethem.sen.cleanarchitectureexample.domain.usecase.GetQuoteListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,7 +16,6 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val quoteUseCase: GetQuoteListUseCase,
-    private val quoteApi: QuoteApi
 ) : ViewModel() {
     private val _quoteList = MutableLiveData<QuoteUiState>()
     val quoteList: LiveData<QuoteUiState> get() = _quoteList
@@ -56,21 +54,6 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun getQuote() {
-        viewModelScope.launch {
-            val a = quoteApi.getSearch("divided house")
-            //println("count ${a.count}")
-            a.results?.let {
-                it.forEach {
-                    it?.let {
-                        //println("author ${it.author}")
-                        //println("content ${it.content}")
-                    }
-                }
-            }
-        }
-    }
-
     fun searchQuote(search: String) {
         viewModelScope.launch {
             quoteUseCase.searchUseCase(search).collect{
@@ -82,6 +65,7 @@ class HomeViewModel @Inject constructor(
                                 message = R.string.error_msg
                             )
                         )
+                        println("exception -> ${it.exception}")
                     }
                     NetworkResponse.Loading -> {
                         _quoteList.postValue(

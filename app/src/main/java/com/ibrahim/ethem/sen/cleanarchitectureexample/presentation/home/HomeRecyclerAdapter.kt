@@ -16,6 +16,13 @@ class HomeRecyclerAdapter : RecyclerView.Adapter<HomeRecyclerAdapter.HomeRecycle
         }
         notifyDataSetChanged()
     }
+
+    private var onItemClickListener : ((String) -> Unit)? = null
+
+    fun setOnItemClickListener(onItemClickListener : ((String) ->Unit)?){
+        this.onItemClickListener = onItemClickListener
+    }
+
     class HomeRecyclerViewHolder(val binding : QuoteItemRvBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeRecyclerViewHolder {
@@ -26,6 +33,9 @@ class HomeRecyclerAdapter : RecyclerView.Adapter<HomeRecyclerAdapter.HomeRecycle
     override fun onBindViewHolder(holder: HomeRecyclerViewHolder, position: Int) {
         holder.binding.authorTv.text = quoteList[position].author
         holder.binding.contentTv.text = quoteList[position].content
+        holder.binding.quoteCard.setOnClickListener {
+            onItemClickListener?.invoke(quoteList[position].id)
+        }
     }
 
     override fun getItemCount(): Int = quoteList.size

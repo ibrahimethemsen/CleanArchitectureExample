@@ -24,4 +24,12 @@ class QuoteDataSourceImpl @Inject constructor(
         }catch (e : Exception){
             NetworkResponse.Error(e)
         }
+
+    override suspend fun getQuote(id: String): NetworkResponse<QuoteResult> =
+        try {
+            val response = quoteApi.getQuote(id)
+            NetworkResponse.Success(response)
+        }catch (e : Exception){
+            NetworkResponse.Error(e)
+        }
 }

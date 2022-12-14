@@ -8,4 +8,6 @@ interface QuoteDataSource {
     suspend fun getQuoteList(page : String) : NetworkResponse<List<QuoteResult>>
 
     suspend fun searchQuoteList(search : String) : NetworkResponse<List<SearchResult>>
+
+    suspend fun getQuote(id : String) : NetworkResponse<QuoteResult>
 }

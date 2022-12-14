@@ -2,9 +2,8 @@ package com.ibrahim.ethem.sen.cleanarchitectureexample.di.mapper
 
 import com.ibrahim.ethem.sen.cleanarchitectureexample.data.dto.quote.QuoteResult
 import com.ibrahim.ethem.sen.cleanarchitectureexample.data.dto.search.SearchResult
-import com.ibrahim.ethem.sen.cleanarchitectureexample.domain.mapper.ListMapper
-import com.ibrahim.ethem.sen.cleanarchitectureexample.domain.mapper.QuoteDomainListMapperImpl
-import com.ibrahim.ethem.sen.cleanarchitectureexample.domain.mapper.SearchDomainListMapperImpl
+import com.ibrahim.ethem.sen.cleanarchitectureexample.domain.mapper.*
+import com.ibrahim.ethem.sen.cleanarchitectureexample.domain.model.QuoteDetailEntity
 import com.ibrahim.ethem.sen.cleanarchitectureexample.domain.model.QuoteEntity
 import dagger.Binds
 import dagger.Module
@@ -23,4 +22,8 @@ abstract class QuoteMapperModule {
     @Binds
     @ViewModelScoped
     abstract fun bindSearchQuoteMapper(searchDomainListMapperImpl: SearchDomainListMapperImpl) : ListMapper<SearchResult,QuoteEntity>
+
+    @Binds
+    @ViewModelScoped
+    abstract fun bindGetQuoteMapper(getQuoteDomainMapper: QuoteDomainMapperImpl) : Mapper<QuoteResult,QuoteDetailEntity>
 }

@@ -8,6 +8,7 @@ class QuoteDomainListMapperImpl @Inject constructor() : ListMapper<QuoteResult,Q
     override fun map(input: List<QuoteResult>?): List<QuoteEntity> {
         return input?.map {
             QuoteEntity(
+                id = it.id.orEmpty(),
                 author = it.author.orEmpty(),
                 content =it.content.orEmpty()
             )

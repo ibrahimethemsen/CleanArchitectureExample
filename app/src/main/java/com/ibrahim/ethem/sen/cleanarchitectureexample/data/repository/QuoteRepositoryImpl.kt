@@ -24,11 +24,21 @@ class QuoteRepositoryImpl @Inject constructor(
         }
 
     override suspend fun searchQuote(search: String): NetworkResponse<List<SearchResult>> =
-        withContext(defaultDispatcher){
+        withContext(defaultDispatcher) {
             try {
                 quoteDataSource.searchQuoteList(search)
-            }catch (e : Exception){
+            } catch (e: Exception) {
                 NetworkResponse.Error(e)
             }
         }
+
+    override suspend fun getQuote(id: String): NetworkResponse<QuoteResult> =
+        withContext(defaultDispatcher) {
+            try {
+                quoteDataSource.getQuote(id)
+            } catch (e: Exception) {
+                NetworkResponse.Error(e)
+            }
+        }
+
 }
